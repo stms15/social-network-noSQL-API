@@ -20,23 +20,9 @@ connection.once('open', async () => {
     await connection.dropCollection('users');
   }
 
-  const users = [
-    {
-      username: 'FirstUser',
-      email: 'first@example.ca',
-    },
-    {
-      username: 'ExampleUser',
-      email: 'example@gmail.com',
-    },
-  ];
   const thoughts = [
     {
       thoughtText: 'This is my first thought.',
-      username: 'FirstUser',
-    },
-    {
-      thoughtText: 'This is my second thought.',
       username: 'FirstUser',
     },
     {
@@ -51,8 +37,29 @@ connection.once('open', async () => {
     },
   ];
 
-  await User.collection.insertMany(users);
+  // add thoughts first
   await Thought.collection.insertMany(thoughts);
+
+  let thoughtCollection = connection.collection('thoughts').find();
+  let thoughtIds = [];
+  await thoughtCollection.forEach((el) => {
+    thoughtIds.push(el._id.toString());
+  });
+
+  // add users with associated thought ids
+  const users = [
+    {
+      username: 'FirstUser',
+      email: 'first@example.ca',
+      thoughts: [thoughtIds[0]],
+    },
+    {
+      username: 'ExampleUser',
+      email: 'example@gmail.com',
+      thoughts: [thoughtIds[1]],
+    },
+  ];
+  await User.collection.insertMany(users);
 
   console.table(users);
   console.table(thoughts);
