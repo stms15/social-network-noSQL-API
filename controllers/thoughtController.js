@@ -4,6 +4,7 @@ module.exports = {
   async getThoughts(req, res) {
     try {
       const thoughts = await Thought.find().populate('reactions');
+
       res.json(thoughts);
     } catch (err) {
       res.status(500).json(err);
@@ -40,7 +41,7 @@ module.exports = {
           .json({ message: 'Thought created, but found no user with that ID' });
       }
 
-      res.json('Thought created.');
+      res.json({ message: 'Thought created.' });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -59,7 +60,7 @@ module.exports = {
         return res.status(404).json({ message: 'No thought with that ID' });
       }
 
-      res.json(thought);
+      res.json({ message: 'Thought updated.' });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -106,7 +107,9 @@ module.exports = {
         return res.status(404).json({ message: 'No thought with that ID' });
       }
 
-      res.json(thought);
+      res.json({
+        message: `Reaction added to thought: ${req.params.thoughtId}`,
+      });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);

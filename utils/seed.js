@@ -24,6 +24,7 @@ connection.once('open', async () => {
     {
       thoughtText: 'This is my first thought.',
       username: 'FirstUser',
+      reactions: [],
     },
     {
       thoughtText: 'My username is ExampleUser and this is my thought.',

@@ -108,6 +108,8 @@ API method: DELETE
 
 The email validator used was found in this Stack Overflow thread: https://stackoverflow.com/questions/18022365/mongoose-validate-email-syntax.
 
+This Mozilla Developer document helped properly format the dates: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString.
+
 ## License
 
 ![MIT License](https://img.shields.io/badge/License-MIT-lightblue)
