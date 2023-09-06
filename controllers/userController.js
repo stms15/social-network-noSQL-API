@@ -6,6 +6,7 @@ module.exports = {
       const users = await User.find();
       res.json(users);
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
   },
@@ -32,6 +33,7 @@ module.exports = {
       const dbUserData = await User.create(req.body);
       res.json(dbUserData);
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
   },
@@ -79,6 +81,7 @@ module.exports = {
         message: 'User and associated thoughts successfully deleted',
       });
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
   },

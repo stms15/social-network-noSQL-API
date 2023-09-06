@@ -7,6 +7,7 @@ module.exports = {
 
       res.json(thoughts);
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
   },
@@ -22,6 +23,7 @@ module.exports = {
 
       res.json(thought);
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
   },
