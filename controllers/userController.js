@@ -6,6 +6,7 @@ module.exports = {
       const users = await User.find();
       res.json(users);
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
   },
@@ -32,6 +33,7 @@ module.exports = {
       const dbUserData = await User.create(req.body);
       res.json(dbUserData);
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
   },
@@ -48,7 +50,7 @@ module.exports = {
         return res.status(404).json({ message: 'No user with that ID' });
       }
 
-      res.json(user);
+      res.json({ message: 'User updated.' });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -75,8 +77,11 @@ module.exports = {
         });
       }
 
-      res.json({ message: 'User successfully deleted' });
+      res.json({
+        message: 'User and associated thoughts successfully deleted',
+      });
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
   },
@@ -92,7 +97,7 @@ module.exports = {
         return res.status(404).json({ message: 'No user with that ID' });
       }
 
-      res.json(user);
+      res.json({ message: `Friend added to user: ${req.params.userId}` });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -110,7 +115,7 @@ module.exports = {
         return res.status(404).json({ message: 'No user with that ID' });
       }
 
-      res.json(user);
+      res.json({ message: 'Friend successsfully deleted.' });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
